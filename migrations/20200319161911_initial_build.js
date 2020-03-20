@@ -12,14 +12,14 @@ exports.up = function(knex) {
     .index()
   })// end usersa
   
-    .createTable('ingredients', tbl => {
-      tbl.increments('ingredient_id');
-  
-      tbl.string('ingredient_name')
-        .unique()
-        .notNullable();
-  
-    })//end ingredients
+  .createTable('ingredients', tbl => {
+    tbl.increments('ingredient_id');
+
+    tbl.string('ingredient_name')
+      .unique()
+      .notNullable();
+
+  })//end ingredients
 
   .createTable('recipe_book', tbl => {
     tbl.increments('book_id')
@@ -42,10 +42,6 @@ exports.up = function(knex) {
     tbl.string('recipe_name')
       .notNullable()
       .unique();
-
-    tbl.float('Qty')
-      .unsigned()
-      .notNullable();
 
     tbl.text('instruction')
     .notNullable();
@@ -81,6 +77,9 @@ exports.up = function(knex) {
       .inTable('ingredients')
       .onDelete('RESTRICT')
       .onUpdate('CASCADE');
+
+      tbl.string('qty')
+      .notNullable();
   })//end ingredients_recipes
 };//end UP
 
