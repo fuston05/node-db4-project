@@ -41,4 +41,16 @@ router.get('/:id/shoppingList', (req, res) => {
   })
 })//end router.get
 
+//get recipe insturctions
+router.get('/:id/instructions', (req, res) => {
+  const id= parseInt(req.params.id);
+  recipes.getInstructions(id)
+  .then( instRes => {
+    res.status(200).json(instRes)
+  } )
+  .catch(error => {
+    res.status(500).json({error: "Could not process your request"})
+  })
+})//end router.get
+
 module.exports= router;

@@ -4,7 +4,7 @@ module.exports= {
   getShoppingList,
   find,
   findById,
-  update,
+  getInstructions,
   remove
 };
 
@@ -26,8 +26,10 @@ function getShoppingList(recipe_id){
   .where({'r.recipe_id': recipe_id})
 }
 
-function update(){
-
+function getInstructions(recipe_id){
+  return db('recipe')
+  .select('recipe_name', 'instruction')
+  .where({'recipe_id': recipe_id})
 }
 
 function remove(){
